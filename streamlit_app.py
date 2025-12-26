@@ -1,3 +1,13 @@
+import streamlit as st
+import random
+import instaloader
+
+
+st.set_page_config(
+    page_title="🩸 Villain Archetype Analyzer",
+    page_icon="🕯️",
+    layout="centered"
+)
 
 
 st.set_page_config(page_title="로판 악당 아키타입", layout="centered")
