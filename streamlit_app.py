@@ -10,7 +10,7 @@ st.set_page_config(
 )
 
 
-st.set_page_config(page_title="로판 악당 아키타입", layout="centered")
+# st.set_page_config(page_title="로판 악당 아키타입", layout="centered")
 
 st.write("🔥 UI 버전 v3 — MBTI+SNS 영역 결합")
 
@@ -26,9 +26,6 @@ if "final_vibes" not in st.session_state:
 # =========================
 # 세션 상태 초기화
 # =========================
-if "analysis_done" not in st.session_state:
-  st.session_state.analysis_done = False
-
 if "final_archetype" not in st.session_state:
   st.session_state.final_archetype = None
 
