@@ -355,5 +355,5 @@ if st.session_state.analysis_done:
     st.session_state.final_archetype = None
     st.session_state.final_vibes = []
 
-Update streamlit app with full analyzer logic
+
 
