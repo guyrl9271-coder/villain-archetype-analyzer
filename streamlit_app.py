@@ -1,4 +1,5 @@
 import streamlit as st
+import random
 
 st.set_page_config(page_title="로판 악당 아키타입", layout="centered")
 
@@ -212,12 +213,6 @@ mbti = st.selectbox("당신의 MBTI", list(MBTI_MAP.keys()))
 # ===================
 # MBTI+SNS 통합버튼
 # ===================
-if not st.session_state.analysis_done:
-    # 🔮 MBTI 분석
-    # 🔮 아키타입은 여기서만 랜덤 생성
-      st.session_state.final_archetype = ARCHETYPES[
-          random.choice(list(ARCHETYPES.keys()))
-    ]
 
     # 🧠 SNS 감정 분석
       sns_text = caption_hint or ""
@@ -265,6 +260,9 @@ if st.session_state.analysis_done:
       archetype["name"],
       st.session_state.final_vibes
   )
+
+  if "final_vibes" not in st.session_state:
+    st.session_state.final_vibes = []
 
   if sns_sentence:
       st.markdown(sns_sentence)
