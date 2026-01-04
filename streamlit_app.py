@@ -11,14 +11,8 @@ if "analysis_done" not in st.session_state:
 if "final_archetype" not in st.session_state:
   st.session_state.final_archetype = None
 
-if "vibes" not in st.session_state:
-  st.session_state.vibes = []
-
 if "sns_done" not in st.session_state:
     st.session_state.sns_done = False
-
-if "sns_vibes" not in st.session_state:
-    st.session_state.sns_vibes = []
 
 
 # =========================
@@ -245,31 +239,6 @@ if st.button("🩸 통합 분석하기"):
     st.session_state.final_vibes = extract_sns_vibe(sns_text)
 
     st.session_state.analysis_done = True
-
-
-    if st.session_state.analysis_done:
-      archetype = st.session_state.final_archetype
-
-      st.subheader(f"👑 {archetype['name']}")
-      st.write(archetype["desc"])
-
-      st.markdown(f"""
-      - **연애 패턴**: {archetype["love" ]}
-      - **심리적 취약점**: {archetype["weak"]}
-      - **숨겨진 욕망**: {archetype["desire"]}
-      - **타인이 보는 당신**: {archetype["others"]}
-      """)
-
-      sns_sentence = build_sns_sentence(
-          archetype["name"],
-          st.session_state.final_vibes
-      )
-
-      if sns_sentence:
-          st.markdown(sns_sentence)
-
-
-
 
 #=======================
 # 분석 결과 출력 (고정)
