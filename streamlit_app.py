@@ -233,7 +233,7 @@ def build_sns_sentence(archetype_name, vibes):
 #st.markdown("---")
 #st.markdown("🕯️ MBTI 분석 영역 ")
 
-#mbti = st.selectbox("당신의 MBTI", list(MBTI_MAP.keys()))
+mbti = st.selectbox("당신의 MBTI", list(MBTI_MAP.keys()))
 
 #if st.button("MBTI 기반 빌런 분석"):
 #  archetype = ARCHETYPES[MBTI_MAP[mbti]]
@@ -255,7 +255,7 @@ def build_sns_sentence(archetype_name, vibes):
 # ===================
 # MBTI+SNS 통합버튼
 # ===================
-  if not st.session_state.analysis_done:
+if not st.session_state.analysis_done:
     # 🔮 MBTI 분석
     # 🔮 아키타입은 여기서만 랜덤 생성
       st.session_state.final_archetype = ARCHETYPES[
