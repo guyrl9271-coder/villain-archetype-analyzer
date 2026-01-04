@@ -1,4 +1,4 @@
-%%writefile streamlit_app.py
+
 
 st.set_page_config(page_title="로판 악당 아키타입", layout="centered")
 
