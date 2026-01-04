@@ -81,13 +81,7 @@ ARCHETYPES = {
 # =========================
 # 인스타 랜덤 게시물 함수
 # =========================
-def get_random_posts(username, n=3):
-  L = instaloader.Instaloader(
-      download_pictures=False,
-      download_videos=False,
-      save_metadata=False,
-      quiet=True
-  )
+
   profile = instaloader.Profile.from_username(L.context, username)
   posts = list(profile.get_posts())
   return random.sample(posts, min(n, len(posts)))
@@ -339,8 +333,6 @@ if st.session_state.analysis_done:
 
   if st.button("🔄 다시 분석하기"):
     st.session_state.analysis_done = False
-    st.session_state.final_archetype = None
-    st.session_state.final_vibes = []
-
+    
 
 
