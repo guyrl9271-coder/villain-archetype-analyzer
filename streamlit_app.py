@@ -1,3 +1,5 @@
+import streamlit as st
+
 st.set_page_config(page_title="로판 악당 아키타입", layout="centered")
 
 st.write("🔥 UI 버전 v3 — MBTI+SNS 영역 결합")
