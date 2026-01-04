@@ -214,14 +214,6 @@ mbti = st.selectbox("당신의 MBTI", list(MBTI_MAP.keys()))
 # MBTI+SNS 통합버튼
 # ===================
 
-    # 🧠 SNS 감정 분석
-      sns_text = caption_hint or ""
-
-      st.session_state.final_vibes = extract_sns_vibe(sns_text)
-
-      base_id =MBTI_MAP[mbti]
-      base_archetype = ARCHETYPES[base_id]
-
 
     # 결과 출력 스위치ON
 
