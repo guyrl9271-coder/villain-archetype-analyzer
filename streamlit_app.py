@@ -1,16 +1,6 @@
-import streamlit as st
-import random
-import instaloader
+%%writefile streamlit_app.py
 
-
-st.set_page_config(
-    page_title="🩸 Villain Archetype Analyzer",
-    page_icon="🕯️",
-    layout="centered"
-)
-
-
-# st.set_page_config(page_title="로판 악당 아키타입", layout="centered")
+st.set_page_config(page_title="로판 악당 아키타입", layout="centered")
 
 st.write("🔥 UI 버전 v3 — MBTI+SNS 영역 결합")
 
@@ -26,6 +16,9 @@ if "final_vibes" not in st.session_state:
 # =========================
 # 세션 상태 초기화
 # =========================
+if "analysis_done" not in st.session_state:
+  st.session_state.analysis_done = False
+
 if "final_archetype" not in st.session_state:
   st.session_state.final_archetype = None
 
@@ -127,7 +120,7 @@ def extract_sns_vibe(text):
 # UI 시작
 # =========================
 
-st.title("🩸 로판 악당 아키타입")
+st.title("🩸")
 st.caption("MBTI + SNS 감정 서사 분석")
 
 # -------- 인스타 영역 --------
@@ -153,10 +146,9 @@ post_urls = st.text_area (
   )
 )
 st.caption(
-  "🔒 입력된 인스타 URL과 텍스트는 이 분석에만 사용되며 "
-  "**어디에도 저장되지 않습니다.** "
-  "**로그인이나 계정 연동은 요구하지않습니다.** "
-  "**분석 결과는 즉시 폐기됩니다.**"
+  "🔒 입력된 인스타 URL과 텍스트는 이 분석에만 사용되며, **어디에도 저장되지 않습니다.** "
+  st.text_area
+  "**로그인이나 계정 연동은 요구하지않습니다. 분석 결과는 즉시 폐기됩니다.**:
   )
 
 
@@ -175,7 +167,7 @@ urls = []
 vibes = []
 # 버튼 눌러야 코드실행됨
 
-if st.button("SNS 기반 분석 반영하기"):
+if st.button("SNS 분석 반영하기"):
   if not st.session_state.sns_done:
 
     st.session_state.sns_archetype = ARCHETYPES[
@@ -217,7 +209,7 @@ if st.button("SNS 기반 분석 반영하기"):
 # =========================
 # SNS 분위기 문장 생성 함수 (전역)
 # =========================
-VIBE_EFFECT = { 
+VIBE_EFFECT = {
     "외로움": "고립된",
     "관계 피로": "관계를 소모적으로 느끼는",
     "불안": "불안정한",
@@ -241,27 +233,29 @@ def build_sns_sentence(archetype_name, vibes):
 
 
 # -------- MBTI 영역 --------
-st.markdown("---")
-st.markdown("👇👇 MBTI 분석 영역 👇👇")
+# mbti 기반확인 버튼
+#st.markdown("---")
+#st.markdown("🕯️ MBTI 분석 영역 ")
 
-mbti = st.selectbox("당신의 MBTI", list(MBTI_MAP.keys()))
+#mbti = st.selectbox("당신의 MBTI", list(MBTI_MAP.keys()))
 
-if st.button("MBTI 기반 빌런 분석"):
-  archetype = ARCHETYPES[MBTI_MAP[mbti]]
+#if st.button("MBTI 기반 빌런 분석"):
+#  archetype = ARCHETYPES[MBTI_MAP[mbti]]
 
 
-  st.subheader(f"👑 {archetype['name']}")
-  st.write(archetype["desc"])
+#  st.subheader(f"👑 {archetype['name']}")
+#  st.write(archetype["desc"])
 
-  st.markdown(f"""
-  - **연애 패턴**: {archetype["love"]}
-  - **심리적 취약점**: {archetype["weak"]}
-  - **숨겨진 욕망**: {archetype["desire"]}
-  - **타인이 보는 당신**: {archetype["others"]}
-  - **당신을 유혹하는 방법**: {archetype["seduce"]}
-  - **질투하는 대상**: {archetype["jealous"]}
-  - **상징 오브젝트**: {archetype["symbol"]}
-  """)
+ # st.markdown(f"""
+ # - **연애 패턴**: {archetype["love"]}
+#- **심리적 취약점**: {archetype["weak"]}
+#  - **숨겨진 욕망**: {archetype["desire"]}
+#  - **타인이 보는 당신**: {archetype["others"]}
+#  - **당신을 유혹하는 방법**: {archetype["seduce"]}
+#  - **질투하는 대상**: {archetype["jealous"]}
+#  - **상징 오브젝트**: {archetype["symbol"]}
+#  """)
+
 # ===================
 # MBTI+SNS 통합버튼
 # ===================
