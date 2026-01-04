@@ -2,15 +2,6 @@ st.set_page_config(page_title="로판 악당 아키타입", layout="centered")
 
 st.write("🔥 UI 버전 v3 — MBTI+SNS 영역 결합")
 
-if "analysis_done" not in st.session_state:
-    st.session_state.analysis_done = False
-
-if "final_archetype" not in st.session_state:
-    st.session_state.final_archetype = None
-
-if "final_vibes" not in st.session_state:
-    st.session_state.final_vibes = []
-
 # =========================
 # 세션 상태 초기화
 # =========================
@@ -26,20 +17,9 @@ if "vibes" not in st.session_state:
 if "sns_done" not in st.session_state:
     st.session_state.sns_done = False
 
-if "sns_archetype" not in st.session_state:
-    st.session_state.sns_archetype = None
-
 if "sns_vibes" not in st.session_state:
     st.session_state.sns_vibes = []
 
-# =========================
-# 🔐 분석 결과 고정용 세션 상태
-# =========================
-if "final_archetype" not in st.session_state:
-    st.session_state.final_archetype = None
-
-if "final_vibes" not in st.session_state:
-    st.session_state.final_vibes = None
 
 # =========================
 # MBTI → 아키타입 매핑
@@ -80,14 +60,8 @@ ARCHETYPES = {
 }
 # =========================
 # 인스타 랜덤 게시물 함수
-# =========================
-
-  profile = instaloader.Profile.from_username(L.context, username)
-  posts = list(profile.get_posts())
-  return random.sample(posts, min(n, len(posts)))
-
-
-      # SNS 키워드 분석 함수
+# ========================= 
+# SNS 키워드 분석 함수
 def extract_sns_vibe(text):
   vibe_map = {
       "외로움": ["외로", "혼자", "공허", "텅"],
@@ -158,15 +132,8 @@ vibes = []
 # 버튼 눌러야 코드실행됨
 
 if st.button("SNS 분석 반영하기"):
-  if not st.session_state.sns_done:
-
-    st.session_state.sns_archetype = ARCHETYPES[
-        random.choice(list(ARCHETYPES.keys()))
-    ]
-
     sns_text = caption_hint or ""
     st.session_state.sns_vibes = extract_sns_vibe(sns_text)
-
     st.session_state.sns_done = True
 
 
